@@ -1,65 +1,419 @@
 package com.sg.alma_in_firestore_12.utilities
 
 import android.util.Log
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FirebaseFirestore
+import com.sg.alma_in_firestore_12.model.Post
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 
 class Utility {
 
-  /*  fun addPostToFirestore(post: Post){
-        val data=HashMap<String,Any>()
-        with (post){
-           data[POST_ID] =1
-           data[POST_NUM] =postNum
-           data[POST_LINE_NUM] =lineNum
-           data[POST_IMAGE_URI] =imageUri
-           data[POST_TEXT] =postText
-           data[POST_MARGIN] =postMargin
-           data[POST_BACKGROUND] =postBackground
-           data[POST_TRANPARECY] =postTransparency
-           data[POST_TEXT_SIZE] =postTextSize
-           data[POST_PADDING] =postPadding
-           data[POST_TEXT_COLOR] =postTextColor
-           data[POST_FONT_FAMILY] =postFontFamily
-           data[POST_RADIUS] =postRadiuas
-        }
-        FirebaseFirestore.getInstance().collection(POST_REF).add(data)*/
+    fun retrivePostFromFirestore(snap: DocumentSnapshot?): Post {
 
-    /*fun convertToPost(snap: DocumentSnapshot?): Post {
-        val postId = snap?.getString(POST_ID).toString()
-        val postNum = snap?.getLong(POST_NUM)!!.toInt()
-        val lineNum = snap?.getLong(POST_LINE_NUM)?.toInt()
-        val imageUri = snap?.getString(POST_IMAGE_URI).toString()
-        val postText:Array<String> = snap?.get(POST_TEXT) as Array<String>
-        val postMargin:Array<Array<Int>> = snap?.get(POST_MARGIN) as Array<Array<Int>>
-        val postBackground = snap?.getString(POST_BACKGROUND).toString()
-        val postTranparency = snap?.getLong(POST_TRANPARECY)!!.toInt()
-        val postTextSize:Array<Int> = snap?.getString(POST_TEXT_SIZE)  as Array<Int>
-        val postPadding: Array<Int> = snap?.getString(POST_PADDING) as Array<Int>
-        val postTextColor: Array<String> = snap?.get(POST_TEXT_COLOR) as Array<String>
-        val postFontFamily= snap?.getLong(POST_FONT_FAMILY)!!.toInt()
-        val postRadius= snap?.getLong(POST_RADIUS)!!.toInt()
-        val newPost=Post(postId,postNum,lineNum!!,imageUri,postText,postMargin,postBackground,postTranparency,postTextSize,postPadding,postTextColor,postFontFamily,postRadius )
-        return newPost
-    }*/
-   /* fun convertToPost1(snap: DocumentSnapshot?): Post1 {
-        val postId = snap?.getString(POST_ID).toString()
+        var newPost = Post()
+        val postId = snap?.get(POST_ID).toString()
         val postNum = snap?.getLong(POST_NUM)!!.toInt()
         val lineNum = snap?.getLong(POST_LINE_NUM)!!.toInt()
         val imageUri = snap?.getString(POST_IMAGE_URI).toString()
-        val postText:ArrayList<String> = snap?.get(POST_TEXT) as ArrayList<String>
-        val postMargin:ArrayList<String> = snap?.get(POST_MARGIN) as ArrayList<String>
+        val postText: ArrayList<String> = snap?.get(POST_TEXT) as ArrayList<String>
         val postBackground = snap?.getString(POST_BACKGROUND).toString()
         val postTranparency = snap?.getLong(POST_TRANPARECY)!!.toInt()
-        val postTextSize:ArrayList<Int> = snap?.getString(POST_TEXT_SIZE)  as ArrayList<Int>
-        val postPadding: ArrayList<Int> = snap?.getString(POST_PADDING) as ArrayList<Int>
         val postTextColor: ArrayList<String> = snap?.get(POST_TEXT_COLOR) as ArrayList<String>
-        val postFontFamily= snap?.getLong(POST_FONT_FAMILY)!!.toInt()
-        val postRadius= snap?.getLong(POST_RADIUS)!!.toInt()
-        val newPost=Post1(postId,postNum,lineNum,imageUri,postText,postMargin,postBackground,postTranparency,postTextSize,postPadding,postTextColor,postFontFamily,postRadius)
-        return newPost
+        val postFontFamily = snap?.getLong(POST_FONT_FAMILY)!!.toInt()
+        val postRadius = snap?.getLong(POST_RADIUS)!!.toInt()
+
+        val postTextSize1 = snap?.getString(POST_TEXT_SIZE).toString()
+        val postTextSize: ArrayList<Int> = convertFromStringArrayToIntArry(postTextSize1)
+        val postPadding1 = snap?.getString(POST_PADDING).toString()
+        val postPadding: ArrayList<Int> = convertFromStringArrayToIntArry(postPadding1)
+
+        val postMarginOld = arrayListOf(
+            arrayListOf(0, 0 , 0, -1),
+            arrayListOf(0, 100 , 0, -1 ),
+            arrayListOf(0, 200 , 0, -1 )
+        )
+
+        val num = 7
+        var marli: ArrayList<Int> = arrayListOf()
+        marli = getMarli(num)
+
+
+        val newPost1 = Post(
+            postId,
+            postNum,
+            lineNum,
+            imageUri,
+            postText,
+            postMarginOld,
+         // postMargin = getPostMargin(postNum),
+            postBackground,
+            postTranparency,
+            postTextSize,
+            postPadding,
+            postTextColor,
+            postFontFamily,
+            postRadius
+        )
+        return newPost1
+    }
+
+
+    private fun getMarli(num: Int): ArrayList<Int> {
+        var ttMarli = arrayListOf<Int>()
+        val result = getTTMarli(num, ttMarli)
+        return result
+    }
+
+    private fun getTTMarli(num: Int, ttMarli: java.util.ArrayList<Int>): java.util.ArrayList<Int> {
+        ttMarli.add(7,2)
+        return ttMarli
+    }
+
+    private fun getPostMargin(postNum: Int): ArrayList<ArrayList<Int>> {
+        var marginArray: ArrayList<ArrayList<Int>> = arrayListOf<ArrayList<Int>>()
+
+        /*  marginArray= arrayListOf(
+              arrayListOf(0, 0 , 0, -1),
+              arrayListOf(0, 100 , 0, -1 ),
+              arrayListOf(0, 200 , 0, -1 ))*/
+
+        var result = getMarginArray(postNum, marginArray)
+
+        return result
+    }
+
+    private fun getMarginArray(
+        postNum: Int,
+        marginArray: ArrayList<ArrayList<Int>>
+    ): ArrayList<ArrayList<Int>> {
+
+        /* var arr= arrayListOf<Int>(3,4,5)
+        marginArray.add(0,arr)*/
+
+      /*  marginArray = arrayListOf(
+            arrayListOf(0, 0, 0, -1),
+            arrayListOf(0, 100, 0, -1),
+            arrayListOf(0, 200, 0, -1)
+        )*/
+
+        FirebaseFirestore.getInstance().collection(MARGIN_REF).document(postNum.toString())
+            .collection(MARGIN_GROUP).addSnapshotListener { value, error ->
+                if (value != null) {
+                    var index = 0
+                 //   for (doc in value.documents) {
+
+                    /*    val left = doc.getString(MARGIN_LEFT).toString()
+                        val up = doc.getString(MARGIN_UP).toString()
+                        val right = doc.getString(MARGIN_RIGHT).toString()
+                        val down = doc.getString(MARGIN_DOWN).toString()
+                        val arr: ArrayList<Int> = arrayListOf(left.toInt(), up.toInt(), right.toInt(), down.toInt())
+
+                        logi(" \n \n Utility 12  ====> index=$index       arr=${arr.joinToString()}")
+
+                      // marginArray.add(index,arr)
+
+                        index++*/
+
+                   //}
+                }
+
+            }
+        return marginArray
+    }
+
+
+    fun sendMargintoFirestore(
+        postMargin: ArrayList<ArrayList<Int>>,
+        di: Int,
+        dd: Int,
+        postNum: Int
+    ) {
+        /*  var data = HashMap<String, Any>()
+          for (index in 0..postMargin.size - 1) {
+              data[MARGIN_LEFT] = postMargin[index][0]!!
+              data[MARGIN_UP] = postMargin[index][1]!!
+              data[MARGIN_RIGHT] = postMargin[index][2]!!
+              data[MARGIN_DOWN] = postMargin[index][3]!!
+              FirebaseFirestore.getInstance().collection(MARGIN_REF).document(postNum.toString())
+                  .collection(MARGIN_GROUP).document(index.toString()).set(data)
+          }*/
+        var data = HashMap<String, Any>()
+        for (index in 0..postMargin.size - 1) {
+            data[MARGIN_LEFT] = postMargin[index][0].toString()
+            data[MARGIN_UP] = postMargin[index][1].toString()
+            data[MARGIN_RIGHT] = postMargin[index][2].toString()
+            data[MARGIN_DOWN] = postMargin[index][3].toString()
+            FirebaseFirestore.getInstance().collection(MARGIN_REF).document(postNum.toString())
+                .collection(MARGIN_GROUP).document(index.toString()).set(data)
+        }
+    }
+
+
+    fun sendPostToFirestore(post: Post) {
+        val data = HashMap<String, Any>()
+        with(post) {
+            data[POST_ID] = 1
+            data[POST_NUM] = postNum
+            data[POST_LINE_NUM] = lineNum
+            data[POST_IMAGE_URI] = imageUri
+            data[POST_TEXT] = postText
+            //  data[POST_MARGIN] = postMargin
+            data[POST_BACKGROUND] = postBackground
+            data[POST_TRANPARECY] = postTransparency
+            data[POST_TEXT_SIZE] = postTextSize
+            data[POST_PADDING] = postPadding
+            data[POST_TEXT_COLOR] = postTextColor
+            data[POST_FONT_FAMILY] = postFontFamily
+            data[POST_RADIUS] = postRadiuas
+        }
+        FirebaseFirestore.getInstance().collection(POST_REF).document(post.postNum.toString())
+            .set(data)
+    }
+
+    fun sendPostToStringFirestore(post: Post) {
+        val data = HashMap<String, Any>()
+        with(post) {
+            data[POST_ID] = 1
+            data[POST_NUM] = postNum
+            data[POST_LINE_NUM] = lineNum
+            data[POST_IMAGE_URI] = imageUri
+            data[POST_TEXT] = postText
+            data[POST_MARGIN] = postMargin.joinToString()
+            data[POST_BACKGROUND] = postBackground
+            data[POST_TRANPARECY] = postTransparency
+            data[POST_TEXT_SIZE] = postTextSize.joinToString()
+            data[POST_PADDING] = postPadding.joinToString()
+            data[POST_TEXT_COLOR] = postTextColor
+            data[POST_FONT_FAMILY] = postFontFamily
+            data[POST_RADIUS] = postRadiuas
+        }
+        FirebaseFirestore.getInstance().collection(POST_REF).document(post.postNum.toString())
+            .set(data)
+    }
+
+
+    /* private fun getPosi(postNum: Int): Array<ArrayList<Int>> {
+
+     }*/
+
+
+    /*  fun AddMargin(post: Post) :Post{
+          val newPost=post
+          val num=post.postNum
+          var postMargin:Array<ArrayList<Int?>> = arrayOf<ArrayList<Int?>>()
+          FirebaseFirestore.getInstance().collection(MARGIN_REF).document(num.toString()).collection(
+              MARGIN_GROUP).addSnapshotListener { value, error ->
+              if (value != null) {
+                  var index=0
+                  for (doc in value.documents){
+                      //val postId = snap?.get(POST_ID).toString()
+                      val left= doc.getLong(MARGIN_LEFT)?.toInt()
+                      val up=doc.getLong(MARGIN_UP)?.toInt()
+                      val right=doc.getLong(MARGIN_RIGHT)?.toInt()
+                      val down=doc.getLong(MARGIN_DOWN)?.toInt()
+                      val arr: ArrayList<Int?> = arrayListOf(left,up,right,down)
+                      postMargin[index]=arr
+                     index++
+                  }
+                  newPost.postMargin=postMargin
+              }
+          }
+          return newPost
+      }*/
+
+
+    /*  fun convertToUser(snap: DocumentSnapshot?): User {
+        var userName = "no userName"
+        var fullName = "no fullName"
+        var email: String = "no email"
+        var profileImage =
+            "https://firebasestorage.googleapis.com/v0/b/social55firestore.appspot.com/o/Default%20Images%2Fprofile.png?alt=media&token=4a02bf76-8cc4-43e7-9750-930176c9c9ee"
+        var dio: String = "no dio"
+        var uid: String = "no uid"
+        userName = snap?.getString(USER_USERNAME).toString()
+        fullName = snap?.getString(USER_FULLNAME).toString()
+        email = snap?.getString(USER_EMAIL).toString()
+        profileImage = snap?.getString(USER_IMAGE).toString()
+        dio = snap?.getString(USER_BIO).toString()
+        uid = snap?.getString(FIRESTORE_USER_ID).toString()
+
+        val newUser = User(userName, fullName, email, profileImage, dio, uid)
+        return newUser
+    }*/
+
+    /*  fun retrivePostFromFirestore(snap: DocumentSnapshot?): Post {
+          //      logi("Utility 111==> \n \n snap= $snap")
+          var newPost = Post()
+          val postId = snap?.get(POST_ID).toString()
+          val postNum = snap?.getLong(POST_NUM)!!.toInt()
+          val lineNum = snap?.getLong(POST_LINE_NUM)!!.toInt()
+          val imageUri = snap?.getString(POST_IMAGE_URI).toString()
+          val postText: ArrayList<String> = snap?.get(POST_TEXT) as ArrayList<String>
+          val postBackground = snap?.getString(POST_BACKGROUND).toString()
+          val postTranparency = snap?.getLong(POST_TRANPARECY)!!.toInt()
+          val postTextColor: ArrayList<String> = snap?.get(POST_TEXT_COLOR) as ArrayList<String>
+          val postFontFamily = snap?.getLong(POST_FONT_FAMILY)!!.toInt()
+          val postRadius = snap?.getLong(POST_RADIUS)!!.toInt()
+
+          val postTextSize1 = snap?.getString(POST_TEXT_SIZE).toString()
+          val postTextSize: ArrayList<Int> = convertFromStringArrayToIntArry(postTextSize1)
+          val postPadding1 = snap?.getString(POST_PADDING).toString()
+          val postPadding: ArrayList<Int> = convertFromStringArrayToIntArry(postPadding1)
+
+          *//* logi("Utility 116==> \n postTextSize1= $postTextSize1")
+         logi("Utility 117==> \n postTextSize[0]= ${postTextSize[0]}")
+         logi("Utility 117==> \n postTextSize[1]= ${postTextSize[1]}")
+         logi("Utility 117==> \n postTextSize[2]= ${postTextSize[2]}")*//*
+
+
+        *//*   //   val postTextSize: ArrayList<Int> = snap?.get(POST_TEXT_SIZE) as ArrayList<Int>
+             val postTextSize1: ArrayList<String> = snap?.get(POST_TEXT_SIZE) as ArrayList<String>
+             val postTextSize: ArrayList<Int> = convertFromStringArrayToIntArry(postTextSize1)
+             //val postPadding: ArrayList<Int> = snap?.get(POST_PADDING) as ArrayList<Int>
+             val postPadding1: ArrayList<String> = snap?.get(POST_PADDING) as ArrayList<String>
+          //   val postPadding: ArrayList<Int> = convertFromStringArrayToIntArry(postPadding1)
+
+
+             val postMargin1: ArrayList<String> = snap?.get(POST_MARGIN) as ArrayList<String>
+        //   val postMargin: ArrayList<Int> =convertFromStringArrayToIntArry(postMargin1)
+  *//*
+
+        val di = 0
+        val dd = 0
+        val postMarginOld = arrayOf(
+            arrayListOf(0, 0 + di, 0, -1 + dd),
+            arrayListOf(0, 100 + di, 0, -1 + dd),
+            arrayListOf(0, 200 + di, 0, -1 + dd)
+        )
+
+        *//*     val postMargin1 = snap?.getString(POST_MARGIN).toString()
+           val postMargin2: ArrayList<ArrayList<Int>> =convertFromStringArrayToIntArry11(postMargin1)*//*
+
+        //   logi("Utility 117==> \n postMargin1= ${postMargin1}")
+
+     *//*   val postMargin = getPostMargin(postNum)
+
+        logi("Utility 217==> \n postMargin[0]= ${postMargin[0]}")
+        logi("Utility 217==> \n postMargin[1]= ${postMargin[1]}")
+        logi("Utility 217==> \n postMargin[2]= ${postMargin[2]}")*//*
+
+
+        val newPost1 = Post(
+            postId,
+            postNum,
+            lineNum,
+            imageUri,
+            postText,
+            postMarginOld,
+            postBackground,
+            postTranparency,
+            postTextSize,
+            postPadding,
+            postTextColor,
+            postFontFamily,
+            postRadius
+        )
+
+        //  logi("Utility 115 /n newPost1=$newPost")
+        return newPost1
     }*/
 
 
+    /*private fun convertToArrayList(postTextSize1: String): ArrayList<Int> {
+        var arr: ArrayList<Int> = arrayListOf()
+        val str = postTextSize1.split(",")
+
+
+        //  arr= arrayListOf(str[0].trim().toInt(),str[1].trim().toInt(),str[0].trim().toInt())
+        *//*   logi("Utility 217==> \n str[0]= ${str[0]}")
+           logi("Utility 217==> \n str[1]= ${str[1]}")
+           logi("Utility 217==> \n str[2]= ${str[2]}")*//*
+
+        for (index in 0 until str.size) {
+            arr.add(str[index].trim().toInt())
+        }
+
+    }*/
+    /* private fun convertFromStringArrayToIntArry11(str: String): ArrayList<ArrayList<Int>> {
+       //  logi("Utility 317==> \n str= ${str}")
+         var newAr = ArrayList<ArrayList<Int>>()
+         return littleHelper11(str, newAr)
+     }*/
+
+    /*  private fun littleHelper11(str: String, newAr: ArrayList<ArrayList<Int>>):ArrayList<ArrayList<Int>> {
+          val str = str.split(",")
+          for (index in 0 until str.size) {
+            //  logi("Utility 30 /n index=$index   str[index]=${str[index]}")
+             // newAr.add(str[index].trim()))
+          }
+          return newAr
+      }*/
+
+
+    private fun littleHelper(str: String, arr: ArrayList<Int>): ArrayList<Int> {
+        val str = str.split(",")
+        for (index in 0 until str.size) {
+            arr.add(str[index].trim().toInt())
+        }
+        return arr
+    }
+
+    private fun convertFromStringArrayToIntArry(str: String): ArrayList<Int> {
+        var newAr = ArrayList<Int>()
+        return littleHelper(str, newAr)
+    }
+
+
+    /* private fun getPostMargin(postNum: Int): Array<ArrayList<Int>> {
+
+         var postMa: Array<ArrayList<Int>> = arrayOf<ArrayList<Int>>()
+
+         FirebaseFirestore.getInstance().collection(MARGIN_REF).document(postNum.toString())
+             .collection(
+                 MARGIN_GROUP
+             ).addSnapshotListener { value, error ->
+                 if (value != null) {
+                     var index = 0
+                     for (doc in value.documents) {
+                         *//* val left= 5
+                         val up=6
+                         val right=7
+                         val down=8*//*
+                        val left = doc.getString(MARGIN_LEFT).toString()
+                        val up = doc.getString(MARGIN_UP).toString()
+                        val right = doc.getString(MARGIN_RIGHT).toString()
+                        val down = doc.getString(MARGIN_DOWN).toString()
+                        val arr: ArrayList<String> = arrayListOf(left, up, right, down)
+                   //     val arrMa= arrayListOf(left, up, right, down)
+                    //    postMa=Array(index){arr}
+                        logi(" \n \n Utility 12  ====> index=$index       arr=${arr.joinToString()}"   )
+
+
+
+                        //  logi(" \n \n Utility 12  ====> index=$index       arr=${arr.joinToString()}")
+
+                     *//*  if (index==0) {
+                           postMa= Array(index){arr}
+                          logi(" \n \n Utility 12  ====> index=$index       arr=${arr.joinToString()}")
+                        // postMa.set(index, arr)
+                       }*//*
+
+                      // postMa.get(index).set(0, left)
+                   *//*     postMa.get(index).set(1, up)
+                        postMa.get(index).set(2, right)
+                        postMa.get(index).set(3, down)*//*
+
+                        index++
+                    }
+
+                }
+            }
+
+
+        return postMa
+    }*/
 
 
     fun logi(
@@ -81,4 +435,14 @@ class Utility {
             Log.d("gg", "${element1} ,${element2} ${element3},${element4}")
         }
     }
+
+    /* private fun deleteAllCollection(ref: CollectionReference) {
+         ref.addSnapshotListener { value, error ->
+             if (value != null) {
+                 for (doc in value.documents){
+                     doc.reference.delete()
+                 }
+             }
+         }
+     }*/
 }

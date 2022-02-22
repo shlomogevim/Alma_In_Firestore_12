@@ -1,22 +1,26 @@
 package com.sg.alma_in_firestore_12.details
 
+import android.app.Activity
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.view.Gravity
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.res.ResourcesCompat
+import coil.load
+import com.sg.alma_in_firestore_12.R
 import com.sg.alma_in_firestore_12.model.Post
 import com.sg.alma_in_firestore_12.utilities.CONSTANT
 import com.sg.alma_in_firestore_12.utilities.Helper1
 import com.sg.alma_in_firestore_12.utilities.Utility
 
 
-class PostGenerator(val contex: Context, val layout: ConstraintLayout) {
+class CreatePost(val contex: Context, val layout: ConstraintLayout) {
 
     val util= Utility()
 
@@ -31,7 +35,8 @@ class PostGenerator(val contex: Context, val layout: ConstraintLayout) {
     val textView3 = TextView(contex)
     val textView2 = TextView(contex)
 
-    fun createPost(post: Post) {
+    fun drawPost(post: Post) {
+        //util.logi(" \n CeratePost10  ===>\n $post")
         var lineNum=1
          lineNum= post.lineNum!!
         val postText=post.postText
@@ -44,8 +49,8 @@ class PostGenerator(val contex: Context, val layout: ConstraintLayout) {
         val fontFamily=post.postFontFamily
         val radius=post.postRadiuas
 
-       // util.logi("PostGenerator10 ==>\n post=$post")
-
+          // val image: ImageView = (context as Activity).findViewById(R.id.imageView)
+          val image: ImageView =layout.findViewById(R.id.imageView)
 
         val fontAddress = helper.getFamilyFont(fontFamily)
         val tra = helper.getTransfo(transparency)
@@ -53,10 +58,18 @@ class PostGenerator(val contex: Context, val layout: ConstraintLayout) {
         shape.cornerRadius = radius.toPx().toFloat()
         shape.setColor(Color.parseColor("#$tra$backGround"))
 
+        image.load(post.imageUri)
+
+         for (index in 1.. textColorArray.size-1){
+             if (!textColorArray[index].contains("#")){
+                 textColorArray[index]="#"+textColorArray[index]
+             }
+         }
+
      //   util.logi("postGenerator9 ==> /n textColorArray[0]= ${textColorArray[0]}")
         val textView1 = TextView(contex)
         textView1.text = postText[0]
-       util.logi("postGenerator10 ==> /n textColorArray[0]= ${textColorArray[0]}")
+      // util.logi("postGenerator10 ==> /n textColorArray[0]= ${textColorArray[0]}")
         if (textColorArray[0] == CONSTANT) {
             textView1.setTextColor(Color.parseColor(textColorArray[1]))
         } else {
@@ -337,7 +350,69 @@ class PostGenerator(val contex: Context, val layout: ConstraintLayout) {
         textView1.layoutParams = lp1
 
 
-        layout.addView(textView1)
+        with(layout) {
+            if (lineNum>1) {
+                val lp2 = ConstraintLayout.LayoutParams(
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT
+                )
+                textView2.layoutParams = lp2
+            }
+            if (lineNum > 2) {
+                val lp3 = ConstraintLayout.LayoutParams(
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT
+                )
+                textView3.layoutParams = lp3
+            }
+            if (lineNum > 3) {
+                val lp4 = ConstraintLayout.LayoutParams(
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT
+                )
+                textView4.layoutParams = lp4
+            }
+            if (lineNum > 4) {
+                val lp5 = ConstraintLayout.LayoutParams(
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT
+                )
+                textView5.layoutParams = lp5
+            }
+            if (lineNum > 5) {
+                val lp6 = ConstraintLayout.LayoutParams(
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT
+                )
+                textView6.layoutParams = lp6
+            }
+            if (lineNum > 6) {
+                val lp7 = ConstraintLayout.LayoutParams(
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT
+                )
+                textView7.layoutParams = lp7
+            }
+            if (lineNum > 7) {
+                val lp8 = ConstraintLayout.LayoutParams(
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT
+                )
+                textView8.layoutParams = lp8
+            }
+            if (lineNum > 8) {
+                val lp9 = ConstraintLayout.LayoutParams(
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT
+                )
+                textView9.layoutParams = lp9
+            }
+
+            textView1.layoutParams = lp1
+
+
+            addView(textView1)
+        }
         if (lineNum>1) {
             layout.addView(textView2)
         }
