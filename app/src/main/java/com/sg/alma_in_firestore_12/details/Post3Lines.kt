@@ -7,20 +7,16 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.firebase.firestore.FirebaseFirestore
 import com.sg.alma_in_firestore_12.R
 import com.sg.alma_in_firestore_12.details.CreatePost
-import com.sg.alma_in_firestore_12.details.CreatePost1
 import com.sg.alma_in_firestore_12.details.CreatePost2
 import com.sg.alma_in_firestore_12.model.Post
 import com.sg.alma_in_firestore_12.utilities.*
 
 class Post3Lines(val context: Context) {
 
-    private val image: ImageView = (context as Activity).findViewById(R.id.imageView)
     private val layout: ConstraintLayout = (context as Activity).findViewById(R.id.mainLayout)
     private val createPost = CreatePost(context, layout)
-    private val createPost1= CreatePost1(context, layout)
-    private val createPost2= CreatePost2(context, layout)
     private val util= Utility()
-    private val util2= Utility2()
+
 
      fun downloadPost306(index:Int) {
          FirebaseFirestore.getInstance().collection(POST_REF).document(index.toString()).get()
@@ -28,10 +24,7 @@ class Post3Lines(val context: Context) {
                  if (task.isSuccessful){
                 val post=util.retrivePostFromFirestore(task.result)
 
-                  // val post1=util.AddMargin(post)
-                  //  util.logi("Post3Lines10 retrivePost  ===>\n $post")
-
-               createPost.drawPost(post)
+                      createPost.drawPost(post)
                  }
              }
 
@@ -55,7 +48,7 @@ class Post3Lines(val context: Context) {
                   arrayListOf(0,90+di, 0, -1+dd),
                   arrayListOf(0,135+di, 0,-1+dd)
               )
-             util.sendMargintoFirestore(postMargin,di,dd,postNum)
+           //  util.sendMargintoFirestore(postMargin,di,dd,postNum)
               postBackground ="a3842c"
               postTransparency =7
               val size1=25

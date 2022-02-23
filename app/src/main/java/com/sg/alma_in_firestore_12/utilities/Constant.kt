@@ -3,7 +3,7 @@ package com.sg.alma_in_firestore_12.utilities
 const val CONSTANT="constant"
 const val NOT_CONSTANT="notConstant"
 
-const val POST_REF="Posts1"
+const val POST_REF="Posts"
 const val POST_ID="post_id"
 const val POST_NUM="post_num"
 const val POST_LINE_NUM="post_lineNum"

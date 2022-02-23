@@ -28,16 +28,14 @@ class Utility {
         val postTextSize: ArrayList<Int> = convertFromStringArrayToIntArry(postTextSize1)
         val postPadding1 = snap?.getString(POST_PADDING).toString()
         val postPadding: ArrayList<Int> = convertFromStringArrayToIntArry(postPadding1)
+        val postMargin1 = snap?.getString(POST_MARGIN).toString()
+        val postMargin: ArrayList<ArrayList<Int>> = convertFromStringArrayToIntArry2(postMargin1)
 
-        val postMarginOld = arrayListOf(
-            arrayListOf(0, 0 , 0, -1),
-            arrayListOf(0, 100 , 0, -1 ),
-            arrayListOf(0, 200 , 0, -1 )
-        )
-
-        val num = 7
-        var marli: ArrayList<Int> = arrayListOf()
-        marli = getMarli(num)
+        /* val postMargin = arrayListOf(
+             arrayListOf(0, 0, 0, -1),
+             arrayListOf(0, 100, 0, -1),
+             arrayListOf(0, 200, 0, -1)
+         )*/
 
 
         val newPost1 = Post(
@@ -46,8 +44,7 @@ class Utility {
             lineNum,
             imageUri,
             postText,
-            postMarginOld,
-         // postMargin = getPostMargin(postNum),
+            postMargin,
             postBackground,
             postTranparency,
             postTextSize,
@@ -56,22 +53,327 @@ class Utility {
             postFontFamily,
             postRadius
         )
+        //logi("Utility 207   post=${newPost1}")
         return newPost1
     }
 
-
-    private fun getMarli(num: Int): ArrayList<Int> {
-        var ttMarli = arrayListOf<Int>()
-        val result = getTTMarli(num, ttMarli)
-        return result
+    private fun convertFromStringArrayToIntArry(str: String): ArrayList<Int> {
+        var newAr = ArrayList<Int>()
+        return littleHelper(str, newAr)
     }
 
-    private fun getTTMarli(num: Int, ttMarli: java.util.ArrayList<Int>): java.util.ArrayList<Int> {
-        ttMarli.add(7,2)
-        return ttMarli
+    private fun littleHelper(str: String, arr: ArrayList<Int>): ArrayList<Int> {
+        val str = str.split(",")
+        for (index in 0 until str.size) {
+            arr.add(str[index].trim().toInt())
+        }
+        return arr
     }
 
-    private fun getPostMargin(postNum: Int): ArrayList<ArrayList<Int>> {
+    private fun convertFromStringArrayToIntArry2(str: String): ArrayList<ArrayList<Int>> {
+        var newAr = ArrayList<ArrayList<Int>>()
+
+        return littleHelper30(str, newAr)
+    }
+    private fun littleHelper30(
+        str: String,
+        bigArray: ArrayList<ArrayList<Int>>
+    ): ArrayList<ArrayList<Int>> {
+        val str1 = str.replace("]", "").replace("[", "")
+
+        var arStr = str1.split(",")
+        //  logi("Utilities 250 arStr=${arStr}")
+        val ind=arStr.size.div(4)
+        logi("Utility300  ind=${ind}")
+
+        when (ind){
+            1->helper10(arStr,bigArray)
+            2->helper20(arStr,bigArray)
+            3->helper30(arStr,bigArray)
+            4->helper40(arStr,bigArray)
+            5->helper50(arStr,bigArray)
+
+
+        }
+
+
+
+
+
+
+
+        return bigArray
+    }
+
+    private fun helper10(arStr: List<String>, bigArray: ArrayList<ArrayList<Int>>): ArrayList<ArrayList<Int>> {
+        var ar1 = arrayListOf<Int>()
+        for (index in 0..3) {
+            ar1.add(arStr[index].trim().toInt())
+            bigArray.add(0,ar1)
+        }
+        return bigArray
+    }
+
+    private fun helper20(arStr: List<String>, bigArray: ArrayList<ArrayList<Int>>): ArrayList<ArrayList<Int>> {
+        var ar1 = arrayListOf<Int>()
+        var ar2 = arrayListOf<Int>()
+
+        for (index in 0..3) {
+            ar1.add(arStr[index].trim().toInt())
+            bigArray.add(0,ar1)
+        }
+        for (index in 4..7) {
+            ar2.add(arStr[index].trim().toInt())
+            bigArray.add(1,ar2)
+        }
+        return bigArray
+    }
+
+    private fun helper30(arStr: List<String>, bigArray: ArrayList<ArrayList<Int>>): ArrayList<ArrayList<Int>> {
+        var ar1 = arrayListOf<Int>()
+        var ar2 = arrayListOf<Int>()
+        var ar3 = arrayListOf<Int>()
+
+        for (index in 0..3) {
+            ar1.add(arStr[index].trim().toInt())
+            bigArray.add(0,ar1)
+        }
+        for (index in 4..7) {
+            ar2.add(arStr[index].trim().toInt())
+            bigArray.add(1,ar2)
+        }
+        for (index in 8..11) {
+            ar3.add(arStr[index].trim().toInt())
+            bigArray.add(2,ar3)
+        }
+        return bigArray
+    }
+    private fun helper40(arStr: List<String>, bigArray: ArrayList<ArrayList<Int>>): ArrayList<ArrayList<Int>> {
+        var ar1 = arrayListOf<Int>()
+        var ar2 = arrayListOf<Int>()
+        var ar3 = arrayListOf<Int>()
+        var a4 = arrayListOf<Int>()
+
+        for (index in 0..3) {
+            ar1.add(arStr[index].trim().toInt())
+            bigArray.add(0,ar1)
+        }
+        for (index in 4..7) {
+            ar2.add(arStr[index].trim().toInt())
+            bigArray.add(1,ar2)
+        }
+        for (index in 8..11) {
+            ar3.add(arStr[index].trim().toInt())
+            bigArray.add(2,ar3)
+        }
+        for (index in 12..15) {
+            ar3.add(arStr[index].trim().toInt())
+            bigArray.add(3,ar3)
+        }
+        return bigArray
+    }
+
+    private fun helper50(arStr: List<String>, bigArray: ArrayList<ArrayList<Int>>): ArrayList<ArrayList<Int>> {
+        var ar0 = arrayListOf<Int>()
+        var ar1 = arrayListOf<Int>()
+        var ar2 = arrayListOf<Int>()
+        var ar3 = arrayListOf<Int>()
+        var ar4 = arrayListOf<Int>()
+
+        for (index in 0..3) {
+            ar0.add(arStr[index].trim().toInt())
+            bigArray.add(0,ar0)
+        }
+        for (index in 4..7) {
+            ar1.add(arStr[index].trim().toInt())
+            bigArray.add(1,ar1)
+        }
+        for (index in 8..11) {
+            ar2.add(arStr[index].trim().toInt())
+            bigArray.add(2,ar2)
+        }
+        for (index in 12..15) {
+            ar3.add(arStr[index].trim().toInt())
+            bigArray.add(3,ar3)
+        }
+        for (index in 16..19) {
+            ar4.add(arStr[index].trim().toInt())
+            bigArray.add(4,ar4)
+        }
+        return bigArray
+    }
+
+
+    /* private fun littleHelper30(
+         str: String,
+         bigArray: ArrayList<ArrayList<Int>>
+     ): ArrayList<ArrayList<Int>> {
+         val str1 = str.replace("]", "").replace("[", "")
+
+         var arStr = str1.split(",")
+         //  logi("Utilities 250 arStr=${arStr}")
+         var ar1 = arrayListOf<Int>()
+         var ar2 = arrayListOf<Int>()
+         var ar3 = arrayListOf<Int>()
+
+         for (index in 0..3) {
+             ar1.add(arStr[index].trim().toInt())
+         }
+         for (index in 4..7) {
+             ar2.add(arStr[index].trim().toInt())
+         }
+         for (index in 8..11) {
+             ar3.add(arStr[index].trim().toInt())
+         }
+
+         bigArray.add(ar1)
+         bigArray.add(ar2)
+         bigArray.add(ar3)
+
+         return bigArray
+     }*/
+
+
+
+
+
+
+
+
+
+    /*   private fun littleHelper2(str: String, bigArray: ArrayList<ArrayList<Int>>): ArrayList<ArrayList<Int>> {
+           val str1 = str.replace("]","").replace("[","")
+
+           var arStr=str1.split(",")
+           //  logi("Utilities 250 arStr=${arStr}")
+           var ar= arrayListOf<Int>()
+           var size=arStr.size
+
+           if (size>1){
+               for (index in 0..3){
+                   ar.add(arStr[index].trim().toInt())
+               }
+               bigArray.add(ar)
+               ar.clear()
+           }
+           if (size>4){
+               for (index in 4..7){
+                   ar.add(arStr[index].trim().toInt())
+               }
+               bigArray.add(ar)
+               ar.clear()
+           }
+           if (size>8){
+               for (index in 8..11){
+                   ar.add(arStr[index].trim().toInt())
+               }
+               bigArray.add(ar)
+               ar.clear()
+           }
+
+           return bigArray
+       }*/
+
+
+    /*   private fun littleHelper2(str: String, bigArray: ArrayList<ArrayList<Int>>): ArrayList<ArrayList<Int>> {
+         val str1 = str.replace("]","").replace("[","")
+
+           var arStr=str1.split(",")
+         //  logi("Utilities 250 arStr=${arStr}")
+
+           var ar= arrayListOf<Int>()
+           for (index in 0..3){
+               ar.add(arStr[index].trim().toInt())
+           }
+
+           bigArray.add(ar)
+       //   logi("Utilities 260 ar1=${ar}  bigArray=$bigArray")
+           ar.clear()
+
+           for (index in 4..7){
+               ar.add(arStr[index].trim().toInt())
+           }
+        //   logi("Utilities 260 ar2=${ar}")
+           bigArray.add(ar)
+           ar.clear()
+
+           for (index in 8..11){
+               ar.add(arStr[index].trim().toInt())
+           }
+           bigArray.add(ar)
+        //   logi("Utilities 260 ar3=${ar}  bigArray=$bigArray")
+
+           return bigArray
+       }
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /* private fun littleHelper2(str: String, bigArray: ArrayList<ArrayList<Int>>): ArrayList<ArrayList<Int>> {
+         val str1 = str.replace("]","").replace("[","")
+
+         var arStr=str1.split(",")
+         //  logi("Utilities 250 arStr=${arStr}")
+
+         val size=arStr.size
+
+         if (size==12) {
+
+             var ar = arrayListOf<Int>()
+             for (index in 0..3) {
+                 ar.add(arStr[index].trim().toInt())
+             }
+
+             bigArray.add(ar)
+             //   logi("Utilities 260 ar1=${ar}  bigArray=$bigArray")
+             ar.clear()
+
+             for (index in 4..7) {
+                 ar.add(arStr[index].trim().toInt())
+             }
+             //   logi("Utilities 260 ar2=${ar}")
+             bigArray.add(ar)
+             ar.clear()
+
+             for (index in 8..11) {
+                 ar.add(arStr[index].trim().toInt())
+             }
+             bigArray.add(ar)
+             //   logi("Utilities 260 ar3=${ar}  bigArray=$bigArray")
+         }
+
+         return bigArray
+     }*/
+
+
+    /*   private fun getMarli(num: Int): ArrayList<Int> {
+           var ttMarli = arrayListOf<Int>()
+           val result = getTTMarli(num, ttMarli)
+           return result
+       }
+
+       private fun getTTMarli(num: Int, ttMarli: java.util.ArrayList<Int>): java.util.ArrayList<Int> {
+           ttMarli.add(7, 2)
+           return ttMarli
+       }*/
+
+    fun getPostMargin(postNum: Int): ArrayList<ArrayList<Int>> {
         var marginArray: ArrayList<ArrayList<Int>> = arrayListOf<ArrayList<Int>>()
 
         /*  marginArray= arrayListOf(
@@ -80,6 +382,7 @@ class Utility {
               arrayListOf(0, 200 , 0, -1 ))*/
 
         var result = getMarginArray(postNum, marginArray)
+        // logi("Utility 201   result=$result")
 
         return result
     }
@@ -92,19 +395,56 @@ class Utility {
         /* var arr= arrayListOf<Int>(3,4,5)
         marginArray.add(0,arr)*/
 
-      /*  marginArray = arrayListOf(
-            arrayListOf(0, 0, 0, -1),
-            arrayListOf(0, 100, 0, -1),
-            arrayListOf(0, 200, 0, -1)
-        )*/
+        /*  marginArray = arrayListOf(
+              arrayListOf(0, 0, 0, -1),
+              arrayListOf(0, 100, 0, -1),
+              arrayListOf(0, 200, 0, -1)
+          )*/
+        /*FirebaseFirestore.getInstance().collection(MARGIN_REF).document(postNum.toString())
+                    .collection(MARGIN_GROUP).document(index.toString()).set(data)*/
 
         FirebaseFirestore.getInstance().collection(MARGIN_REF).document(postNum.toString())
             .collection(MARGIN_GROUP).addSnapshotListener { value, error ->
+                var ar: ArrayList<Int> = arrayListOf()
                 if (value != null) {
                     var index = 0
-                 //   for (doc in value.documents) {
+                    for (doc in value.documents) {
+                        val arrSt = doc.getString(MARGIN_AR).toString()
+                        ar = convertFromStringArrayToIntArry(arrSt)
+                        /*  //  logi("Utilities 134 /n                       arrSt= $arrSt")
+                             val stt= arrSt.split(",")
+                              val stArr1=stt.toTypedArray()
+                          //   logi("Utilities 134 /n                       stArr1= ${stArr1.joinToString()}")
+                            ar=stArr1.map { it.trim().toInt() }.toTypedArray()
+                            logi("Utilities 135 /n                       ar= ${ar.joinToString()}")*/
+                        //  logi("Utilities 134 /n                       ar= ${ar.joinToString()}")
 
-                    /*    val left = doc.getString(MARGIN_LEFT).toString()
+                        marginArray.add(ar)
+
+
+                    }
+                }
+
+            }
+        return marginArray
+    }
+
+
+    fun sendMargintoFirestore(
+        postMargin: ArrayList<ArrayList<Int>>, di: Int, dd: Int, postNum: Int
+    ) {
+        var arrString = ""
+        var data = HashMap<String, Any>()
+        for (index in 0..postMargin.size - 1) {
+            arrString = postMargin[index].joinToString()
+            data.put(MARGIN_AR, arrString)
+            //  logi("Utility 115                                         index=$index     arrString=$arrString")
+            FirebaseFirestore.getInstance().collection(MARGIN_REF).document(postNum.toString())
+                .collection(MARGIN_GROUP).document(index.toString()).set(data)
+        }
+    }
+
+    /*    val left = doc.getString(MARGIN_LEFT).toString()
                         val up = doc.getString(MARGIN_UP).toString()
                         val right = doc.getString(MARGIN_RIGHT).toString()
                         val down = doc.getString(MARGIN_DOWN).toString()
@@ -115,62 +455,6 @@ class Utility {
                       // marginArray.add(index,arr)
 
                         index++*/
-
-                   //}
-                }
-
-            }
-        return marginArray
-    }
-
-
-    fun sendMargintoFirestore(
-        postMargin: ArrayList<ArrayList<Int>>,
-        di: Int,
-        dd: Int,
-        postNum: Int
-    ) {
-        /*  var data = HashMap<String, Any>()
-          for (index in 0..postMargin.size - 1) {
-              data[MARGIN_LEFT] = postMargin[index][0]!!
-              data[MARGIN_UP] = postMargin[index][1]!!
-              data[MARGIN_RIGHT] = postMargin[index][2]!!
-              data[MARGIN_DOWN] = postMargin[index][3]!!
-              FirebaseFirestore.getInstance().collection(MARGIN_REF).document(postNum.toString())
-                  .collection(MARGIN_GROUP).document(index.toString()).set(data)
-          }*/
-        var data = HashMap<String, Any>()
-        for (index in 0..postMargin.size - 1) {
-            data[MARGIN_LEFT] = postMargin[index][0].toString()
-            data[MARGIN_UP] = postMargin[index][1].toString()
-            data[MARGIN_RIGHT] = postMargin[index][2].toString()
-            data[MARGIN_DOWN] = postMargin[index][3].toString()
-            FirebaseFirestore.getInstance().collection(MARGIN_REF).document(postNum.toString())
-                .collection(MARGIN_GROUP).document(index.toString()).set(data)
-        }
-    }
-
-
-    fun sendPostToFirestore(post: Post) {
-        val data = HashMap<String, Any>()
-        with(post) {
-            data[POST_ID] = 1
-            data[POST_NUM] = postNum
-            data[POST_LINE_NUM] = lineNum
-            data[POST_IMAGE_URI] = imageUri
-            data[POST_TEXT] = postText
-            //  data[POST_MARGIN] = postMargin
-            data[POST_BACKGROUND] = postBackground
-            data[POST_TRANPARECY] = postTransparency
-            data[POST_TEXT_SIZE] = postTextSize
-            data[POST_PADDING] = postPadding
-            data[POST_TEXT_COLOR] = postTextColor
-            data[POST_FONT_FAMILY] = postFontFamily
-            data[POST_RADIUS] = postRadiuas
-        }
-        FirebaseFirestore.getInstance().collection(POST_REF).document(post.postNum.toString())
-            .set(data)
-    }
 
     fun sendPostToStringFirestore(post: Post) {
         val data = HashMap<String, Any>()
@@ -185,6 +469,27 @@ class Utility {
             data[POST_TRANPARECY] = postTransparency
             data[POST_TEXT_SIZE] = postTextSize.joinToString()
             data[POST_PADDING] = postPadding.joinToString()
+            data[POST_TEXT_COLOR] = postTextColor
+            data[POST_FONT_FAMILY] = postFontFamily
+            data[POST_RADIUS] = postRadiuas
+        }
+        FirebaseFirestore.getInstance().collection(POST_REF).document(post.postNum.toString())
+            .set(data)
+    }
+
+    fun sendPostToFirestore(post: Post) {
+        val data = HashMap<String, Any>()
+        with(post) {
+            data[POST_ID] = 1
+            data[POST_NUM] = postNum
+            data[POST_LINE_NUM] = lineNum
+            data[POST_IMAGE_URI] = imageUri
+            data[POST_TEXT] = postText
+            //  data[POST_MARGIN] = postMargin
+            data[POST_BACKGROUND] = postBackground
+            data[POST_TRANPARECY] = postTransparency
+            data[POST_TEXT_SIZE] = postTextSize
+            data[POST_PADDING] = postPadding
             data[POST_TEXT_COLOR] = postTextColor
             data[POST_FONT_FAMILY] = postFontFamily
             data[POST_RADIUS] = postRadiuas
@@ -350,20 +655,6 @@ class Utility {
           }
           return newAr
       }*/
-
-
-    private fun littleHelper(str: String, arr: ArrayList<Int>): ArrayList<Int> {
-        val str = str.split(",")
-        for (index in 0 until str.size) {
-            arr.add(str[index].trim().toInt())
-        }
-        return arr
-    }
-
-    private fun convertFromStringArrayToIntArry(str: String): ArrayList<Int> {
-        var newAr = ArrayList<Int>()
-        return littleHelper(str, newAr)
-    }
 
 
     /* private fun getPostMargin(postNum: Int): Array<ArrayList<Int>> {
