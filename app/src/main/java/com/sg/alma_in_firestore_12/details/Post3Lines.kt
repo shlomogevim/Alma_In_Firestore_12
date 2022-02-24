@@ -2,12 +2,10 @@ package com.sg.alma12.Posts.general
 
 import android.app.Activity
 import android.content.Context
-import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.firebase.firestore.FirebaseFirestore
 import com.sg.alma_in_firestore_12.R
 import com.sg.alma_in_firestore_12.details.CreatePost
-import com.sg.alma_in_firestore_12.details.CreatePost2
 import com.sg.alma_in_firestore_12.model.Post
 import com.sg.alma_in_firestore_12.utilities.*
 
