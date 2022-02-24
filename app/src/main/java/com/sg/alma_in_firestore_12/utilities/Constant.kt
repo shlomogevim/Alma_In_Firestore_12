@@ -18,11 +18,5 @@ const val POST_TEXT_COLOR="post_textColor"
 const val POST_FONT_FAMILY="post_fontFamily"
 const val POST_RADIUS="post_radius"
 
-const val MARGIN_REF="Margin"
-const val MARGIN_GROUP="margin_group"
-const val MARGIN_AR="margin_ar"
-const val MARGIN_LEFT="margin_left"
-const val MARGIN_UP="margin_up"
-const val MARGIN_RIGHT="margin_right"
-const val MARGIN_DOWN="margin_down"
+
 

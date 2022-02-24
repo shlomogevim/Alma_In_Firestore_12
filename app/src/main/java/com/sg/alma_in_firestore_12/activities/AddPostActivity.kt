@@ -40,31 +40,31 @@ class AddPostActivity : AppCompatActivity() {
 
 
       //  post1Lines.upLoadPost(100)
-     //  post1Lines.downloadPost(100)
+       //  util.downloadPost(this,100)
 
     //   post2Lines.uploadPost(200)
-     //   post2Lines.download(200)
+      //  util.downloadPost(this,200)
 
    //post3Lines.uploadPost(306)
-  // post3Lines.downloadPost(306)
+     //   util.downloadPost(this,306)
 
       //  post4Lines.uploadPost(400)
-        //  post4Lines.downloadPost(400)
+       // util.downloadPost(this,400)
 
           // post5Lines.uploadPost(500)
-       //  post5Lines.downloadPost(500)
+       // util.downloadPost(this,500)
 
       //post6Lines.uploadPost(600)
-      //  post6Lines.downloadPost(600)
+     //  util.downloadPost(this,600)
 
-        //post7Lines.uploadPost(700)
-      //post7Lines.downloadPost(700)
+    // post7Lines.uploadPost(700)
+    //util.downloadPost(this,700)
 
        //post8Lines.uploadPost(800)
-       //post8Lines.downloadPost(800)
+       // util.downloadPost(this,800)
 
        // post9Lines.uploadPost(900)
-        post9Lines.downloadPost(900)
+      util.downloadPost(this,900)
 
     }
 }

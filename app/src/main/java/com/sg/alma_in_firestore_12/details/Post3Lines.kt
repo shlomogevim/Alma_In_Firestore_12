@@ -16,19 +16,7 @@ class Post3Lines(val context: Context) {
     private val util= Utility()
 
 
-     fun downloadPost306(index:Int) {
-         FirebaseFirestore.getInstance().collection(POST_REF).document(index.toString()).get()
-             .addOnCompleteListener { task->
-                 if (task.isSuccessful){
-                val post=util.retrivePostFromFirestore(task.result)
-
-                      createPost.drawPost(post)
-                 }
-             }
-
-
-     }
-    fun uploadPost306() {
+        fun uploadPost306() {
           val post = Post()
           with(post) {
               postNum = 306
