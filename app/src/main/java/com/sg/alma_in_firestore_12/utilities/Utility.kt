@@ -73,9 +73,9 @@ class Utility {
     private fun convertFromStringArrayToIntArry2(str: String): ArrayList<ArrayList<Int>> {
         var newAr = ArrayList<ArrayList<Int>>()
 
-        return littleHelper30(str, newAr)
+        return littleHelperForMargin(str, newAr)
     }
-    private fun littleHelper30(
+    private fun littleHelperForMargin(
         str: String,
         bigArray: ArrayList<ArrayList<Int>>
     ): ArrayList<ArrayList<Int>> {
@@ -92,6 +92,10 @@ class Utility {
             3->helper30(arStr,bigArray)
             4->helper40(arStr,bigArray)
             5->helper50(arStr,bigArray)
+            6->helper60(arStr,bigArray)
+            7->helper70(arStr,bigArray)
+            8->helper80(arStr,bigArray)
+            9->helper90(arStr,bigArray)
 
 
         }
@@ -199,6 +203,173 @@ class Utility {
         for (index in 16..19) {
             ar4.add(arStr[index].trim().toInt())
             bigArray.add(4,ar4)
+        }
+        return bigArray
+    }
+    private fun helper60(arStr: List<String>, bigArray: ArrayList<ArrayList<Int>>): ArrayList<ArrayList<Int>> {
+        var ar0 = arrayListOf<Int>()
+        var ar1 = arrayListOf<Int>()
+        var ar2 = arrayListOf<Int>()
+        var ar3 = arrayListOf<Int>()
+        var ar4 = arrayListOf<Int>()
+        var ar5 = arrayListOf<Int>()
+
+
+        for (index in 0..3) {
+            ar0.add(arStr[index].trim().toInt())
+            bigArray.add(0,ar0)
+        }
+        for (index in 4..7) {
+            ar1.add(arStr[index].trim().toInt())
+            bigArray.add(1,ar1)
+        }
+        for (index in 8..11) {
+            ar2.add(arStr[index].trim().toInt())
+            bigArray.add(2,ar2)
+        }
+        for (index in 12..15) {
+            ar3.add(arStr[index].trim().toInt())
+            bigArray.add(3,ar3)
+        }
+        for (index in 16..19) {
+            ar4.add(arStr[index].trim().toInt())
+            bigArray.add(4,ar4)
+        }
+        for (index in 20..23) {
+            ar5.add(arStr[index].trim().toInt())
+            bigArray.add(5,ar5)
+        }
+        return bigArray
+    }
+    private fun helper70(arStr: List<String>, bigArray: ArrayList<ArrayList<Int>>): ArrayList<ArrayList<Int>> {
+        var ar0 = arrayListOf<Int>()
+        var ar1 = arrayListOf<Int>()
+        var ar2 = arrayListOf<Int>()
+        var ar3 = arrayListOf<Int>()
+        var ar4 = arrayListOf<Int>()
+        var ar5 = arrayListOf<Int>()
+        var ar6 = arrayListOf<Int>()
+
+        for (index in 0..3) {
+            ar0.add(arStr[index].trim().toInt())
+            bigArray.add(0,ar0)
+        }
+        for (index in 4..7) {
+            ar1.add(arStr[index].trim().toInt())
+            bigArray.add(1,ar1)
+        }
+        for (index in 8..11) {
+            ar2.add(arStr[index].trim().toInt())
+            bigArray.add(2,ar2)
+        }
+        for (index in 12..15) {
+            ar3.add(arStr[index].trim().toInt())
+            bigArray.add(3,ar3)
+        }
+        for (index in 16..19) {
+            ar4.add(arStr[index].trim().toInt())
+            bigArray.add(4,ar4)
+        }
+        for (index in 20..23) {
+            ar5.add(arStr[index].trim().toInt())
+            bigArray.add(5,ar5)
+        }
+        for (index in 24..27) {
+            ar6.add(arStr[index].trim().toInt())
+            bigArray.add(6,ar6)
+        }
+        return bigArray
+    }
+    private fun helper80(arStr: List<String>, bigArray: ArrayList<ArrayList<Int>>): ArrayList<ArrayList<Int>> {
+        var ar0 = arrayListOf<Int>()
+        var ar1 = arrayListOf<Int>()
+        var ar2 = arrayListOf<Int>()
+        var ar3 = arrayListOf<Int>()
+        var ar4 = arrayListOf<Int>()
+        var ar5 = arrayListOf<Int>()
+        var ar6 = arrayListOf<Int>()
+        var ar7 = arrayListOf<Int>()
+
+        for (index in 0..3) {
+            ar0.add(arStr[index].trim().toInt())
+            bigArray.add(0,ar0)
+        }
+        for (index in 4..7) {
+            ar1.add(arStr[index].trim().toInt())
+            bigArray.add(1,ar1)
+        }
+        for (index in 8..11) {
+            ar2.add(arStr[index].trim().toInt())
+            bigArray.add(2,ar2)
+        }
+        for (index in 12..15) {
+            ar3.add(arStr[index].trim().toInt())
+            bigArray.add(3,ar3)
+        }
+        for (index in 16..19) {
+            ar4.add(arStr[index].trim().toInt())
+            bigArray.add(4,ar4)
+        }
+        for (index in 20..23) {
+            ar5.add(arStr[index].trim().toInt())
+            bigArray.add(5,ar5)
+        }
+        for (index in 24..27) {
+            ar6.add(arStr[index].trim().toInt())
+            bigArray.add(6,ar6)
+        }
+        for (index in 28..31) {
+            ar7.add(arStr[index].trim().toInt())
+            bigArray.add(7,ar7)
+        }
+        return bigArray
+    }
+    private fun helper90(arStr: List<String>, bigArray: ArrayList<ArrayList<Int>>): ArrayList<ArrayList<Int>> {
+        var ar0 = arrayListOf<Int>()
+        var ar1 = arrayListOf<Int>()
+        var ar2 = arrayListOf<Int>()
+        var ar3 = arrayListOf<Int>()
+        var ar4 = arrayListOf<Int>()
+        var ar5 = arrayListOf<Int>()
+        var ar6 = arrayListOf<Int>()
+        var ar7 = arrayListOf<Int>()
+        var ar8 = arrayListOf<Int>()
+
+        for (index in 0..3) {
+            ar0.add(arStr[index].trim().toInt())
+            bigArray.add(0,ar0)
+        }
+        for (index in 4..7) {
+            ar1.add(arStr[index].trim().toInt())
+            bigArray.add(1,ar1)
+        }
+        for (index in 8..11) {
+            ar2.add(arStr[index].trim().toInt())
+            bigArray.add(2,ar2)
+        }
+        for (index in 12..15) {
+            ar3.add(arStr[index].trim().toInt())
+            bigArray.add(3,ar3)
+        }
+        for (index in 16..19) {
+            ar4.add(arStr[index].trim().toInt())
+            bigArray.add(4,ar4)
+        }
+        for (index in 20..23) {
+            ar5.add(arStr[index].trim().toInt())
+            bigArray.add(5,ar5)
+        }
+        for (index in 24..27) {
+            ar6.add(arStr[index].trim().toInt())
+            bigArray.add(6,ar6)
+        }
+        for (index in 28..31) {
+            ar7.add(arStr[index].trim().toInt())
+            bigArray.add(7,ar7)
+        }
+        for (index in 32..35) {
+            ar8.add(arStr[index].trim().toInt())
+            bigArray.add(8,ar8)
         }
         return bigArray
     }
